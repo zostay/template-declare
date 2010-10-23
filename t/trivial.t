@@ -32,8 +32,8 @@ sub  wrap {
         with ( xmlns      => "http://www.w3.org/1999/xhtml", 'xml:lang' => "en"), 
     html {
         head {
-            meta { attr { 'http-equiv' => "content-type", 'content' => "text/html; charset=utf-8" } }
-            meta { attr { name => 'robots', content => 'all' } }
+            metadata { attr { 'http-equiv' => "content-type", 'content' => "text/html; charset=utf-8" } }
+            metadata { attr { name => 'robots', content => 'all' } }
             title { outs($title) }
             }
         body {

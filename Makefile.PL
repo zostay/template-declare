@@ -18,5 +18,9 @@ requires 'String::BufferStack' => 1.10;
 feature 'HTML Lint testing' => 
     -default => 0,
     'HTML::Lint' => 0;
+feature 'Moose tests' =>
+    -default => 0,
+    'Moose' => 0,
+    'MooseX::Declare' => 0;
 auto_install;
 WriteAll;

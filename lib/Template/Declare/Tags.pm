@@ -52,8 +52,17 @@ sub import {
     # directly into the caller's namespace...
     #undef @TAG_SUB_LIST;
 
-    while (@_) {
+    my @export = @EXPORT;
+
+    LANG: while (@_) {
         my $lang = shift;
+
+        # Disable the with function
+        if ($lang eq '-moose_friendly') {
+            @export = grep { $_ ne 'with' } @export;
+            next LANG;
+        }
+
         my $opts;
         if (ref $_[0] and ref $_[0] eq 'HASH') {
             $opts = shift;
@@ -78,7 +87,7 @@ sub import {
         Template::Declare::Tags::install_tag($_, $tagset)
             for @$tag_list;
     }
-    __PACKAGE__->export_to_level(1, $self);
+    __PACKAGE__->export_to_level(1, $self, @export);
 }
 
 sub _install {
